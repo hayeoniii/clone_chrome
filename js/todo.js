@@ -19,6 +19,8 @@ function saveToDos() {
 function deleteTodo(event){
     const li = event.target.parentElement;
     li.remove();
+    Todoarray = Todoarray.filter((todo) => todo.id !== parseInt(li.id));
+    saveToDos();
 }
 // todo 삭제 
 
@@ -26,6 +28,7 @@ function deleteTodo(event){
 function paintTodo(newTodo){
     const li = document.createElement("li");
     const span = document.createElement("span");
+    li.id = newTodo.id;
     span.innerText =newTodo.text;
 
     const button = document.createElement("button");
@@ -51,6 +54,8 @@ function handleToDoSubmit(event){
     paintTodo(newTodoObj);
     saveToDos();
 }
+
+
 
 todoForm.addEventListener("submit", handleToDoSubmit);
 
